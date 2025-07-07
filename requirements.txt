@@ -1,0 +1,4 @@
+# camoufox should be already installed since this is a submodule
+
+# files
+aiofiles==24.1.0

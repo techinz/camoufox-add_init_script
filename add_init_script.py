@@ -47,3 +47,6 @@ async def add_init_script(js_script_string: str, addon_path: str = 'addon') -> s
         await f.write(registry_json)
 
     return script_filename
+
+
+add_init_script.is_camoufox_workaround = True

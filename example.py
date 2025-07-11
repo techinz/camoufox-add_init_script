@@ -3,7 +3,7 @@ import os
 
 from camoufox import AsyncCamoufox
 
-from add_init_script import add_init_script
+from add_init_script import add_init_script, clean_scripts
 
 # path to the addon directory, relative to the script location (default 'addon')
 ADDON_PATH = 'addon'
@@ -57,8 +57,10 @@ async def main():
     ) as browser:
         page = await browser.new_page()
 
+        clean_scripts(ADDON_PATH)  # 3. clean the old scripts before use
+
         # use add_init_script() instead of page.add_init_script()
-        await add_init_script(script, ADDON_PATH)  # 3. use this function to add the script to the addon
+        await add_init_script(script, ADDON_PATH)  # 4. use this function to add the script to the addon
 
         # 4. actually, there is no 4.
         # Just continue to use the page as normal,

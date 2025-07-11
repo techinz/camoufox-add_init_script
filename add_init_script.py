@@ -49,4 +49,22 @@ async def add_init_script(js_script_string: str, addon_path: str = 'addon') -> s
     return script_filename
 
 
+def clean_scripts(addon_path: str = 'addon') -> None:
+    """
+    Clean the scripts directory by removing all script files and the registry.
+
+    :param addon_path: Path to the addon's directory
+    """
+
+    scripts_dir = os.path.join(addon_path, 'scripts')
+    if os.path.exists(scripts_dir):
+        for filename in os.listdir(scripts_dir):
+            file_path = os.path.join(scripts_dir, filename)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        registry_path = os.path.join(scripts_dir, 'registry.json')
+        if os.path.exists(registry_path):
+            os.remove(registry_path)
+
+
 add_init_script.is_camoufox_workaround = True
